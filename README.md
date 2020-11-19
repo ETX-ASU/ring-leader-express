@@ -1,4 +1,4 @@
-# ASU ETX Ring Leader
+# ASU ETX Ring Leader - Example App
 
 This is a monorepo that houses several packages that can be published and consumed independently to support the Ring Leader vision. That vision is to simplify the LTI 1.3 integration from LMSs into tools developed by the ETX team.
 
