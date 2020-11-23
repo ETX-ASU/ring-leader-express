@@ -11,7 +11,7 @@ build/
 ### CUSTOM : EXAMPLE SERVER ENV CONFIGS ###
 
 .env.local
-.env.local.json
+.env.*.json
 
 ### Code ###
 .vscode/*

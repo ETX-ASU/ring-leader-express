@@ -65,17 +65,23 @@ In order to fully test the Ring Leader libraries using the test server, you will
 All of the configurations for the LTI 1.3 launch and Heroku app will be stored in a `.env.local` file. Follow these steps:
 
 1. Find the `packages/rl-tool-example-server/.env` file.
-2. Make a copy of that file and name it `packages/rl-tool-example-server/.env.local`
+2. Make a copy of that file and name it `packages/rl-tool-example-server/.env.json`
 3. Substitute `<replace me>` in the value of the `HEROKU_APP_NAME` field with your name. Example:
 
 ```bash
 # before
 HEROKU_APP_NAME=ring-leader-<replace me>
 # after
-HEROKU_APP_NAME=ring-leader-john-martin
+HEROKU_APP_NAME=ring-leader-test-user
 ```
 
-4. Save your updated `.env.local.json` file.
+4. Save your updated `.env.<your env here>.json` file.
+
+5. Set the add name of your environment file as an env variable
+
+```
+export RING_LEADER_EXPRESS_ENV=<your-env-here> 
+```
 
 # Local Development
 
@@ -85,7 +91,7 @@ From the root of the project run the following:
 yarn run develop
 ```
 
-This will install all dependencies, build each of the packages and being watching each package for changes.
+This will install all dependencies, build each of the packages and begin watching each package for changes.
 
 Note that the utilization of `Yarn Workspaces` allows packages do list other packages within this monorepo as dependencies. The watches that run should allow a change in a dependent package to be picked up automatically.
 
@@ -116,7 +122,7 @@ The app will need a unique name within Heroku and within your Heroku account. Be
 Once you have configured your Heroku app name, then run the following:
 
 ```bash
-yarn run heroku-create
+yarn run heroku-create -e
 ```
 
 Run the following command to verify that Heroku is now listed as a `git` remote:
@@ -169,39 +175,16 @@ heroku run bash
 ```
 
 ## Updating configs for your heroku app:
+
 ```bash
 yarn heroku-update-configs
 ```
-Will take config from .env.local.json
+Will take config from `env.${process.env.RING_LEADER_EXPRESS_ENV}.json`
 
 # Sample Tool Registration with Canvas
 
 [Follow these steps to integrate the example tool with Canvas](./documentation/SampleToolCanvasRegistration.md)
 
-# Running Tests
-
-// todo
-
-# SemVer
-
-Because there could be many tools relying on the Ring Leader libraries, it is critical to follow [`SemVer`](https://semver.org/) as a convention.
-
-// TODO outline Git Commit and testing conventions
-
-# Publishing Ring Leader Packages
-
-The `rl-client-lib` and `rl-server-lib` packages can be pulled down by anyone who has access to the "@asu-etx" scoped private NPM repositories. They are pulled by many tools.
-
-Publishing should only take place after extensive review of the all `Git` commits, successful completion of all tests, and manual testing using the test server.
-
-Making an update means first determining the next [`SemVer`](https://semver.org/) version number to use to ensure there is no disruption for tools that already have dependencies on these libraries.
-
-// todo utilize git conventions
-// make note of tests
-
-```
-// TODO
-```
 
 # LTI Advantage Documentation
 

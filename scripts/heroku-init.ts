@@ -6,7 +6,8 @@ const SERVER_ROOT = path.resolve(
   __dirname,
   "../packages/rl-tool-example-server"
 );
-const ENV_VARIABLES_PATH = path.resolve(SERVER_ROOT, ".env.local.json");
+
+const ENV_VARIABLES_PATH = path.resolve(SERVER_ROOT, `.env.${process.env.RING_LEADER_EXPRESS_ENV}.json`);
 
 const configsFromEnvFile = JSON.parse(
   fs.readFileSync(ENV_VARIABLES_PATH, "utf8")
