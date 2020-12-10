@@ -147,11 +147,19 @@ A public and private key pair need to be generated. The public key will be provi
 yarn run setup-tool-keys
 ```
 
+You can also add a new tools programatically by using -n or --name options with comma delimited set of names to the command line:
+
+```bash
+yarn run setup-tool-keys --name=new-tool-1,new-tool-2 
+yarn run setup-tool-keys -n=new-tool-1,new-tool-2 
+```
+
 This script does the following:
 
 1. Generates the required `.pem` files that represent the public and private RAS keys
 2. Converts the public key into the `JWK` format
 3. Configures your Heroku app with the private Key
+4. It is worth looking at the env.*.json to see what is generated
 
 ## Staring or Updating your App
 

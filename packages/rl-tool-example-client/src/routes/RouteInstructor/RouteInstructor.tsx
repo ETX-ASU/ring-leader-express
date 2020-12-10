@@ -45,9 +45,9 @@ const RouteInstructor: React.FC = (props: any) => {
     setDisplayCreateResourceLinkAssignment(false);
 
     /* EXAMPLE: How to retrieve users */
-    const results = await retrieveUsers(radioInputValue);
-    setUsers(results.members);
-    setCourses(results.context);
+    const members = await retrieveUsers(radioInputValue);
+    setUsers(members);
+    //setCourses(context);
     setDisplayDiv(true);
   };
   const createAssignment = async () => {

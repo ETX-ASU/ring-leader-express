@@ -21,7 +21,34 @@ const configsFromEnvFile = JSON.parse(
   fs.readFileSync(ENV_VARIABLES_PATH, "utf8")
 );
 
-const toolConsumerPromises = configsFromEnvFile.TOOL_CONSUMERS.map(
+const toolConsumers = configsFromEnvFile.TOOL_CONSUMERS;
+
+const toolNames = [];
+for(let i=0; i < process.argv.length; i++) {
+  const arg = process.argv[i];
+  const args = arg.split(/:|=/);
+  if(args.length == 2 && (args[0] == "-n" || args[0] == "--name")) {
+    args[1].split(",").forEach((value) => {toolConsumers.push({name:value})})
+  }
+}
+
+
+let hasDuplicates = false;
+for (let i = 0; i < toolConsumers.length; i++) {
+  if (toolNames.indexOf(toolConsumers[i].name) >= 0) {
+    hasDuplicates = true;
+    console.log(
+      `You can not have duplicate names for tool consumers ( ${toolConsumers[i].name} ), please remove/update duplicate names.`);
+
+  } else {
+    toolNames.push(toolConsumers[i].name);
+  }
+}
+if (hasDuplicates) {
+  throw Error("terminating");
+}
+
+const toolConsumerPromises = .map(
   (toolConsumer) => {
     if (toolConsumer.private_key && toolConsumer.private_key.trim() !== "") {
       return Promise.resolve(true);

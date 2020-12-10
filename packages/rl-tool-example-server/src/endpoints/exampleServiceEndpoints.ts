@@ -19,7 +19,8 @@ const rlLtiServiceExpressEndpoints = (app: Express): void => {
        `${DEEP_LINK_RESOURCELINKS_ENDPOINT}: no session detected, something is wrong`
      );
     }
-    const platform: any = req.session.platform;
+    const session: any = req.session;
+    const platform: any = session.platform;
     const items = await getDeepLinkItems(
       DEEP_LINK_RESOURCELINKS_ENDPOINT,
       platform
@@ -40,7 +41,8 @@ const rlLtiServiceExpressEndpoints = (app: Express): void => {
     logger.debug(
       `CREATE_ASSIGNMENT_ENDPOINT session: ${JSON.stringify(req.session)}`
     );
-    const platform: any = req.session.platform;
+    const session: any = req.session;
+    const platform: any = session.platform;
     const reqQueryString = req.body.params;
 
     //external_tool_url - Tool needs to pass this URL that will be launched when student
@@ -78,7 +80,8 @@ const rlLtiServiceExpressEndpoints = (app: Express): void => {
     if (!req.session) {
       throw new Error("no session detected, something is wrong");
     }
-    const platform: any = req.session.platform;
+    const session: any = req.session;
+    const platform: any = session.platform;
     logger.debug(`get assignments - platform - ${JSON.stringify(platform)}`);
 
     const results = await new Grade().getLineItems(platform);
