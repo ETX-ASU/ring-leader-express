@@ -1,10 +1,12 @@
 # ASU ETX Ring Leader - Example App
 
-This is a monorepo that houses several packages that can be published and consumed independently to support the Ring Leader vision. That vision is to simplify the LTI 1.3 integration from LMSs into tools developed by the ETX team.
-
-The `rl-server-lib` and `rl-client-lib` packages are published as private NPM packages that can be included within tools. These libraries will be used to expedite the integration with LTI 1.3 capable LMSs.
+This repo contains an example Express/React application that dmonstrates how to use the rl-lti-server and rl-lti-client libraries to convert a working Express/React application into a LTI 1.3 compliant tool that allows integration with a Consumer LMS such as Canvas with minimal additional code.
 
 The `rl-tool-example-client` and `rl-tool-example-server` packages are used to stand up an example usage of the `rl-server-lib` and `rl-client-lib` libraries.
+
+It uses the heroku cloud service (https://heroku.com) for standing up a remote server to host the tool. It uses an in-memory sql database and the typeorm library to support state storage. It is a simple matter to configure the application to use most standard SQL databases such as DBMaria or postgres. 
+
+To learn more specifics about the design and how to use the libraries go to the ring-leader repository. https://github.com/ETX-ASU/ring-leader
 
 # Install Tools
 
